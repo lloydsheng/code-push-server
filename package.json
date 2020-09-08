@@ -1,5 +1,6 @@
 {
   "name": "code-push-server",
+  "namespace": "xiangli",
   "description": "CodePush service is hotupdate services which adapter react-native-code-push and cordova-plugin-code-push",
   "version": "0.5.4",
   "license": "MIT",

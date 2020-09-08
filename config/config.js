@@ -15,10 +15,10 @@ config.development = {
   },
   // Config for qiniu (http://www.qiniu.com/) cloud storage when storageType value is "qiniu".
   qiniu: {
-    accessKey: "",
-    secretKey: "",
-    bucketName: "",
-    downloadUrl: "" // Binary files download host address.
+    accessKey: process.env.QINIU_ACCESS_KEY,
+    secretKey: process.env.QINIU_ACCESS_SECRET,
+    bucketName: process.env.QINIU_BUCKET_NAME,
+    downloadUrl: process.env.QINIU_DOWNLOAD_URL // Binary files download host address.
   },
   // Config for upyun (https://www.upyun.com/) storage when storageType value is "upyun"
   upyun: {
@@ -66,7 +66,7 @@ config.development = {
   jwt: {
     // Recommended: 63 random alpha-numeric characters
     // Generate using: https://www.grc.com/passwords.htm
-    tokenSecret: process.env.TOKEN_SECRET ||'INSERT_RANDOM_TOKEN_KEY'
+    tokenSecret: process.env.TOKEN_SECRET || 'INSERT_RANDOM_TOKEN_KEY'
   },
   common: {
     /*
@@ -89,7 +89,7 @@ config.development = {
     rolloutClientUniqueIdCache: false,
   },
   // Config for smtp email，register module need validate user email project source https://github.com/nodemailer/nodemailer
-  smtpConfig:{
+  smtpConfig: {
     host: "smtp.aliyun.com",
     port: 465,
     secure: true,
@@ -109,12 +109,12 @@ config.development = {
           return new Error('The server refused the connection');
         }
         if (options.total_retry_time > 1000 * 60 * 60) {
-            // End reconnecting after a specific timeout and flush all commands with a individual error
-            return new Error('Retry time exhausted');
+          // End reconnecting after a specific timeout and flush all commands with a individual error
+          return new Error('Retry time exhausted');
         }
         if (options.times_connected > 10) {
-            // End reconnecting with built in error
-            return undefined;
+          // End reconnecting with built in error
+          return undefined;
         }
         // reconnect after
         return Math.max(options.attempt * 100, 3000);
@@ -124,11 +124,11 @@ config.development = {
 }
 
 config.development.log4js = {
-  appenders: {console: { type: 'console'}},
-  categories : {
-    "default": { appenders: ['console'], level:'error'},
-    "startup": { appenders: ['console'], level:'info'},
-    "http": { appenders: ['console'], level:'info'}
+  appenders: { console: { type: 'console' } },
+  categories: {
+    "default": { appenders: ['console'], level: 'error' },
+    "startup": { appenders: ['console'], level: 'info' },
+    "http": { appenders: ['console'], level: 'info' }
   }
 }
 
